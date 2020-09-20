@@ -1,0 +1,9 @@
+| Type      | Directory            |
+|-----------|----------------------|
+| Service   | ~/Library/Services   |
+
+Open with Tor Browser (Service)
+* Usage: Select something and right click, "Services > Open with Tor Browser"
+* If a URL is selected, opens the URL in Tor
+* If selection is not a URL, search selection with DDG in Tor
+* Missing feature: Does not work when right clicking on links
