@@ -319,7 +319,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>455.500000:607.000000</string>
+				<string>455.500000:574.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -427,7 +427,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>455.500000:709.000000</string>
+				<string>455.500000:676.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Get Value of Variable.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -475,7 +475,9 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>function run(input, parameters) {	if (input.length == 1) {		return "https://www.duckduckgo.com/?q=" + encodeURIComponent(input[0]);	}	return input[0];}</string>
+					<string>function run(input, parameters) {	// Check if we selected a link	var app = Application("Safari");	app.includeStandardAdditions = true;	var url = app.doJavaScript(		'window.getSelection().anchorNode.parentNode.href',		{ in: app.windows[0].currentTab });	if (url) { return url; }
+	
+	// if we found a URL in the selection, use it	if (input.length == 2) {		return input[0];	}		// If the above tests don't work, just search these terms on DDG	return "https://www.duckduckgo.com/?q=" + encodeURIComponent(input[0]);}</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunJavaScript</string>
@@ -530,7 +532,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>455.500000:930.000000</string>
+				<string>455.500000:921.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run JavaScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -638,7 +640,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>455.500000:1035.000000</string>
+				<string>455.500000:1026.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Set Value of Variable.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -739,7 +741,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>455.500000:1137.000000</string>
+				<string>455.500000:1128.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Launch Application.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -849,7 +851,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>455.500000:1239.000000</string>
+				<string>455.500000:1230.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Get Value of Variable.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -897,7 +899,9 @@ end run</string>
 				<key>ActionParameters</key>
 				<dict>
 					<key>source</key>
-					<string>on run {input, parameters}	tell application "System Events"		-- block until "Tor Browser" starts up (30 sec max)		repeat 150 times			if not (exists (window 1 of process "Tor Browser")) then				delay 0.2			else				exit repeat			end if		end repeat	end tell		tell application "Tor Browser" to open location inputend run</string>
+					<string>on run {input, parameters}	tell application "System Events"		-- block until "Tor Browser" starts up (30 sec max)		repeat 150 times			if not (exists (window 1 of process "Tor Browser")) then				delay 0.2			else				exit repeat			end if		end repeat	end tell
+
+	tell application "Tor Browser" to open location inputend run</string>
 				</dict>
 				<key>BundleIdentifier</key>
 				<string>com.apple.Automator.RunScript</string>
@@ -953,7 +957,7 @@ end run</string>
 				<key>isViewVisible</key>
 				<true/>
 				<key>location</key>
-				<string>455.500000:1577.000000</string>
+				<string>455.500000:1475.000000</string>
 				<key>nibPath</key>
 				<string>/System/Library/Automator/Run AppleScript.action/Contents/Resources/Base.lproj/main.nib</string>
 			</dict>
@@ -963,61 +967,61 @@ end run</string>
 	</array>
 	<key>connectors</key>
 	<dict>
-		<key>012CDCC0-9606-4D94-8099-E5093743293F</key>
+		<key>4AA7D808-603D-418E-9309-65EB26B143A9</key>
 		<dict>
 			<key>from</key>
 			<string>DDF83641-AF44-4C58-A558-5CE627356077 - DDF83641-AF44-4C58-A558-5CE627356077</string>
 			<key>to</key>
 			<string>E6239A11-0695-4C48-A4F7-D704E22E4457 - E6239A11-0695-4C48-A4F7-D704E22E4457</string>
 		</dict>
-		<key>0E035DE8-DB1D-43C0-9B1E-35782CCA03FA</key>
-		<dict>
-			<key>from</key>
-			<string>62A49EEB-6A03-4609-8BB0-90D4299337CC - 62A49EEB-6A03-4609-8BB0-90D4299337CC</string>
-			<key>to</key>
-			<string>609B9932-4385-40EB-AE99-4EC2881F0838 - 609B9932-4385-40EB-AE99-4EC2881F0838</string>
-		</dict>
-		<key>23B06799-8054-43D7-9121-49C68FFC2D24</key>
-		<dict>
-			<key>from</key>
-			<string>AC1429F2-74AC-4491-BC22-B2BD941AAC45 - AC1429F2-74AC-4491-BC22-B2BD941AAC45</string>
-			<key>to</key>
-			<string>62A49EEB-6A03-4609-8BB0-90D4299337CC - 62A49EEB-6A03-4609-8BB0-90D4299337CC</string>
-		</dict>
-		<key>2B83CE7D-CD58-4CA4-8A6A-8FC8D16D28B4</key>
-		<dict>
-			<key>from</key>
-			<string>D672438D-96FC-4AF7-A9F2-4D691A4E5755 - D672438D-96FC-4AF7-A9F2-4D691A4E5755</string>
-			<key>to</key>
-			<string>DDF83641-AF44-4C58-A558-5CE627356077 - DDF83641-AF44-4C58-A558-5CE627356077</string>
-		</dict>
-		<key>70F77639-C8BC-45A3-AA07-A531BB560CB9</key>
-		<dict>
-			<key>from</key>
-			<string>609B9932-4385-40EB-AE99-4EC2881F0838 - 609B9932-4385-40EB-AE99-4EC2881F0838</string>
-			<key>to</key>
-			<string>D672438D-96FC-4AF7-A9F2-4D691A4E5755 - D672438D-96FC-4AF7-A9F2-4D691A4E5755</string>
-		</dict>
-		<key>D82B952A-1576-4C66-876D-1E1C9FE4FBB9</key>
+		<key>8301BAC7-5248-419E-9673-6F989108E007</key>
 		<dict>
 			<key>from</key>
 			<string>11529DF6-CD53-4060-B907-F4E122A3701A - 11529DF6-CD53-4060-B907-F4E122A3701A</string>
 			<key>to</key>
 			<string>0DFE7243-2C5C-4060-8F16-367DE5ED3016 - 0DFE7243-2C5C-4060-8F16-367DE5ED3016</string>
 		</dict>
-		<key>E45D4763-09B0-4A63-840D-7B530FA099F0</key>
+		<key>9952DFA7-3BBE-4220-9F64-EF35DA83BF8D</key>
+		<dict>
+			<key>from</key>
+			<string>D672438D-96FC-4AF7-A9F2-4D691A4E5755 - D672438D-96FC-4AF7-A9F2-4D691A4E5755</string>
+			<key>to</key>
+			<string>DDF83641-AF44-4C58-A558-5CE627356077 - DDF83641-AF44-4C58-A558-5CE627356077</string>
+		</dict>
+		<key>ADED71D4-B0B7-460D-B4D4-0AB96E9A4FFE</key>
+		<dict>
+			<key>from</key>
+			<string>AC1429F2-74AC-4491-BC22-B2BD941AAC45 - AC1429F2-74AC-4491-BC22-B2BD941AAC45</string>
+			<key>to</key>
+			<string>62A49EEB-6A03-4609-8BB0-90D4299337CC - 62A49EEB-6A03-4609-8BB0-90D4299337CC</string>
+		</dict>
+		<key>AF0824B8-DBF9-4937-88CC-8AE6116E5FD0</key>
 		<dict>
 			<key>from</key>
 			<string>0DFE7243-2C5C-4060-8F16-367DE5ED3016 - 0DFE7243-2C5C-4060-8F16-367DE5ED3016</string>
 			<key>to</key>
 			<string>AC1429F2-74AC-4491-BC22-B2BD941AAC45 - AC1429F2-74AC-4491-BC22-B2BD941AAC45</string>
 		</dict>
-		<key>EA2B0C26-80AF-46D9-AB09-DBC116B3B3F2</key>
+		<key>BEE47650-33BB-4331-A1BD-1F05B3B2D606</key>
+		<dict>
+			<key>from</key>
+			<string>609B9932-4385-40EB-AE99-4EC2881F0838 - 609B9932-4385-40EB-AE99-4EC2881F0838</string>
+			<key>to</key>
+			<string>D672438D-96FC-4AF7-A9F2-4D691A4E5755 - D672438D-96FC-4AF7-A9F2-4D691A4E5755</string>
+		</dict>
+		<key>E4336C4C-AB93-4972-BB88-1B2132355219</key>
 		<dict>
 			<key>from</key>
 			<string>E6239A11-0695-4C48-A4F7-D704E22E4457 - E6239A11-0695-4C48-A4F7-D704E22E4457</string>
 			<key>to</key>
 			<string>648A821C-6FA6-49B9-86C0-3A4E0C5A48E8 - 648A821C-6FA6-49B9-86C0-3A4E0C5A48E8</string>
+		</dict>
+		<key>FFF50C5F-F485-4008-89F9-E66DC69144C0</key>
+		<dict>
+			<key>from</key>
+			<string>62A49EEB-6A03-4609-8BB0-90D4299337CC - 62A49EEB-6A03-4609-8BB0-90D4299337CC</string>
+			<key>to</key>
+			<string>609B9932-4385-40EB-AE99-4EC2881F0838 - 609B9932-4385-40EB-AE99-4EC2881F0838</string>
 		</dict>
 	</dict>
 	<key>variables</key>
@@ -1047,10 +1051,19 @@ end run</string>
 	</array>
 	<key>workflowMetaData</key>
 	<dict>
+		<key>applicationBundleID</key>
+		<string>com.apple.Safari</string>
 		<key>applicationBundleIDsByPath</key>
-		<dict/>
+		<dict>
+			<key>/Applications/Safari.app</key>
+			<string>com.apple.Safari</string>
+		</dict>
+		<key>applicationPath</key>
+		<string>/Applications/Safari.app</string>
 		<key>applicationPaths</key>
-		<array/>
+		<array>
+			<string>/Applications/Safari.app</string>
+		</array>
 		<key>inputTypeIdentifier</key>
 		<string>com.apple.Automator.text</string>
 		<key>outputTypeIdentifier</key>
@@ -1059,6 +1072,10 @@ end run</string>
 		<integer>11</integer>
 		<key>processesInput</key>
 		<integer>0</integer>
+		<key>serviceApplicationBundleID</key>
+		<string>com.apple.Safari</string>
+		<key>serviceApplicationPath</key>
+		<string>/Applications/Safari.app</string>
 		<key>serviceInputTypeIdentifier</key>
 		<string>com.apple.Automator.text</string>
 		<key>serviceOutputTypeIdentifier</key>
